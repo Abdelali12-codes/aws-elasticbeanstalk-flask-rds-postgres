@@ -28,3 +28,8 @@ eb create env --elb-type application
 
 
 
+## instance log streaming
+
+```
+eb logs --cloudwatch-logs enable
+```

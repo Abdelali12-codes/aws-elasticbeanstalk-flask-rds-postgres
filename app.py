@@ -1,5 +1,7 @@
 from flask import Flask,flash, request, render_template
 from flask_sqlalchemy import SQLAlchemy 
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 import os
 
 app = Flask(__name__)
@@ -24,6 +26,9 @@ else:
         database='user',
     )
 app.config['SECRET_KEY'] = 'the random string'  
+
+xray_recorder.configure(service='flaskapp')
+XRayMiddleware(app, xray_recorder)
 
 db = SQLAlchemy(app)  
 
