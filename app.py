@@ -23,7 +23,7 @@ else:
         port='5432',
         database='user',
     )
-
+app.config['SECRET_KEY'] = 'the random string'  
 
 db = SQLAlchemy(app)  
 
