@@ -27,7 +27,7 @@ else:
     )
 app.config['SECRET_KEY'] = 'the random string'  
 
-xray_recorder.configure(service='flaskapp')
+xray_recorder.configure(service='flask')
 XRayMiddleware(app, xray_recorder)
 
 db = SQLAlchemy(app)  
