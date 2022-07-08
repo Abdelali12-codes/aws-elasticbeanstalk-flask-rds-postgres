@@ -5,6 +5,9 @@ from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
+from flask_cors import CORS
+
 import os
 
 app = Flask(__name__)
@@ -34,6 +37,9 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 xray_recorder.configure(service='flask')
 XRayMiddleware(app, xray_recorder)
+
+
+CORS(app)
 
 db = SQLAlchemy(app)  
 jwt = JWTManager(app)
