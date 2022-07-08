@@ -1,4 +1,4 @@
-from flask import Flask,flash, request, render_template
+from flask import Flask, jsonify, flash, request, render_template
 from flask_sqlalchemy import SQLAlchemy 
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
@@ -51,6 +51,10 @@ def message():
 @app.route('/form')
 def form():
     return render_template("form.html")
+
+@app.route('/hello')
+def hello():
+    return jsonify({'message':'Hello Dear user'}), 200  
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
